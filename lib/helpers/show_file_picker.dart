@@ -19,7 +19,7 @@ Future<void> showMaterialFilePicker({
   /// Function that gets called when the value is changed
   ValueChanged<PlatformFile>? onChanged,
 }) async {
-  FilePickerResult? result = await FilePicker.platform.pickFiles(
+  FilePickerResult? result = await FilePicker.pickFiles(
     type: fileType,
     withData: true,
     allowMultiple: false,

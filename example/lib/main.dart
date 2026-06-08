@@ -1,12 +1,10 @@
 // ignore_for_file: avoid_print
 
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:intl/intl.dart';
 
 import 'model.dart';
-import 'theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -15,17 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-      initial: AdaptiveThemeMode.light,
-      light: buildTheme(Brightness.light),
-      dark: buildTheme(Brightness.dark),
-      builder: (context, theme) {
-        return MaterialApp(
-          title: 'Material Picker Examples',
-          theme: theme,
-          home: const TestPage(),
-        );
-      },
+    return MaterialApp(
+      title: 'Material Picker Examples',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        brightness: Brightness.light,
+      ),
+      home: const TestPage(),
     );
   }
 }
@@ -48,14 +42,6 @@ class _TestPageState extends State<TestPage> {
         backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
           title: const Text('Material Picker Examples'),
-          actions: <Widget>[
-            IconButton(
-              icon: Theme.of(context).brightness == Brightness.dark
-                  ? const Icon(Icons.brightness_7)
-                  : const Icon(Icons.brightness_4),
-              onPressed: () => AdaptiveTheme.of(context).toggleThemeMode(),
-            )
-          ],
           bottom: const TabBar(
             isScrollable: true,
             tabs: <Widget>[
